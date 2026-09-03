@@ -1,7 +1,6 @@
 import { PILOT_METRICS } from '../data/demo.js';
-import { Badge, Card, Progress, SectionTitle } from '../components/ui.jsx';
+import { Badge, Btn, Card, Progress, SectionTitle } from '../components/ui.jsx';
 import { Link } from '../lib/router.jsx';
-import { Btn } from '../components/ui.jsx';
 
 export default function Impact() {
   return (
@@ -40,7 +39,7 @@ export default function Impact() {
             <Card key={m.id} pad hover className="stack" style={{ gap: 10 }}>
               <div className="row-between">
                 <span className="stat-label" style={{ margin: 0 }}>{m.label}</span>
-                <Badge variant="demo">Pilot target</Badge>
+                <Badge variant="demo">Demo · illustrative</Badge>
               </div>
               <div className="stat-value mono" style={{ fontSize: 24 }}>
                 {m.display ?? `${m.value}${m.unit}`}

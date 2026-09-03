@@ -21,6 +21,7 @@ export default function HighTicket() {
   const [errors, setErrors] = useState({});
   const [bookingLead, setBookingLead] = useState(null);
   const [bookingForm, setBookingForm] = useState({ date: '', time: '09:00' });
+  const [bookingError, setBookingError] = useState('');
   const [toast, setToast] = useState('');
 
   const industry = business ? industryById(business.industryId) : null;
@@ -93,9 +94,10 @@ export default function HighTicket() {
 
   const confirmBooking = () => {
     if (!bookingForm.date.trim()) {
-      alert('Enter an appointment date (e.g. Thu 10:00 or 12 Sep).');
+      setBookingError('Enter an appointment date — e.g. "Thu 10:00" or "12 Sep".');
       return;
     }
+    setBookingError('');
     setLeads((ls) =>
       ls.map((l) =>
         l.id === bookingLead.id
@@ -135,7 +137,7 @@ export default function HighTicket() {
           <EmptyState
             glyph="HT"
             title="No high-ticket business configured yet"
-            message="Run the Business Simulator to configure one, or load a demo business with sample leads to see the full workflow immediately."
+            message="Run Build Your System to configure one, or load a demo business with sample leads to see the full workflow immediately."
             actions={[
               <Link key="sim" to="simulator"><Btn variant="accent">Configure a business</Btn></Link>,
               <Btn key="demo" variant="outline" onClick={loadDemo}>Load demo business + leads</Btn>,
@@ -173,7 +175,7 @@ export default function HighTicket() {
         <Stat value={`${stats.rate}%`} label="Conversion rate" note={`${stats.won} won of ${stats.total}`} />
       </div>
 
-      <div className="grid-2" style={{ gridTemplateColumns: 'minmax(320px, 5fr) minmax(300px, 4fr)', alignItems: 'start' }}>
+      <div className="split">
         {/* Capture + qualification form */}
         <Card pad className="stack-lg">
           <div>
@@ -324,7 +326,7 @@ export default function HighTicket() {
                         {LEAD_STATUSES.map((s) => <option key={s.id} value={s.id}>{s.label}</option>)}
                       </Select>
                       {['qualified', 'high-intent'].includes(lead.status) && (
-                        <Btn variant="accent" size="sm" onClick={() => { setBookingLead(lead); setBookingForm({ date: '', time: '09:00' }); }}>
+                        <Btn variant="accent" size="sm" onClick={() => { setBookingLead(lead); setBookingForm({ date: '', time: '09:00' }); setBookingError(''); }}>
                           Book appointment
                         </Btn>
                       )}
@@ -347,10 +349,11 @@ export default function HighTicket() {
           onClose={() => setBookingLead(null)}
         >
           <div className="stack">
-            <Field label="Date" required>
+            <Field label="Date" required error={bookingError}>
               <Input
                 value={bookingForm.date}
-                onChange={(e) => setBookingForm((b) => ({ ...b, date: e.target.value }))}
+                invalid={!!bookingError}
+                onChange={(e) => { setBookingForm((b) => ({ ...b, date: e.target.value })); setBookingError(''); }}
                 placeholder="e.g. Thu 12 Sep"
               />
             </Field>

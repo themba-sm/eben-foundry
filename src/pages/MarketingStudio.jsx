@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { contrastText } from '../lib/color.js';
 import { useBusiness } from '../lib/store.jsx';
 import { Btn, Badge, Card, Field, Input, TextArea, ColorInput, Tabs, Toast } from '../components/ui.jsx';
 
@@ -84,13 +85,13 @@ export default function MarketingStudio() {
         </p>
       </div>
 
-      <div className="grid-2" style={{ gridTemplateColumns: 'minmax(320px, 2fr) minmax(360px, 3fr)', alignItems: 'start' }}>
+      <div className="split">
         {/* Inputs */}
         <Card pad className="stack">
           <div>
             <div className="card-title">Brand & offer inputs</div>
             <div className="card-sub">
-              {business ? 'Pre-filled from your simulator configuration.' : 'No active configuration — enter details manually or run the Business Simulator.'}
+              {business ? 'Pre-filled from your active configuration.' : 'No active configuration — enter details manually or run Build Your System.'}
             </div>
           </div>
           <Field label="Business name" required>
@@ -128,8 +129,8 @@ export default function MarketingStudio() {
           ) : tab === 'social' ? (
             <div className="stack" style={{ gap: 14 }}>
               <div className="ad-frame">
-                <div style={{ background: form.primary, color: '#fff', padding: '18px 20px', display: 'flex', alignItems: 'center', gap: 12 }}>
-                  <span style={{ width: 38, height: 38, borderRadius: '50%', background: form.secondary, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 13, color: '#fff' }}>
+                <div style={{ background: form.primary, color: contrastText(form.primary), padding: '18px 20px', display: 'flex', alignItems: 'center', gap: 12 }}>
+                  <span style={{ width: 38, height: 38, borderRadius: '50%', background: form.secondary, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 13, color: contrastText(form.secondary) }}>
                     {initials(form.name)}
                   </span>
                   <div>
@@ -142,7 +143,7 @@ export default function MarketingStudio() {
                   <p className="sub" style={{ fontSize: 13.5 }}>
                     {form.product}{form.audience ? ` — made for ${form.audience.toLowerCase()}` : ''}.
                   </p>
-                  <Btn variant="accent" style={{ background: form.secondary, alignSelf: 'flex-start' }}>{form.cta} →</Btn>
+                  <Btn variant="accent" style={{ background: form.secondary, color: contrastText(form.secondary), alignSelf: 'flex-start' }}>{form.cta} →</Btn>
                 </div>
               </div>
               <div className="row">
@@ -182,7 +183,7 @@ export default function MarketingStudio() {
                     {form.product}{form.audience ? ` for ${form.audience.toLowerCase()}` : ''}. {form.cta} in under a minute.
                   </p>
                   <div className="row">
-                    <Btn variant="accent" style={{ background: form.primary }}>{form.cta}</Btn>
+                    <Btn variant="accent" style={{ background: form.primary, color: contrastText(form.primary) }}>{form.cta}</Btn>
                     <Btn variant="outline">See how it works</Btn>
                   </div>
                   <div className="row" style={{ gap: 20, paddingTop: 8 }}>
@@ -201,7 +202,7 @@ export default function MarketingStudio() {
             <div className="stack" style={{ gap: 14 }}>
               <div className="phone">
                 <div className="phone-head" style={{ background: '#075E54', color: '#fff' }}>
-                  <span className="phone-avatar" style={{ background: form.primary }}>{initials(form.name)}</span>
+                  <span className="phone-avatar" style={{ background: form.primary, color: contrastText(form.primary) }}>{initials(form.name)}</span>
                   <div>
                     <div className="phone-title">{form.name}</div>
                     <div className="phone-subtitle">WhatsApp Business · Demo preview</div>

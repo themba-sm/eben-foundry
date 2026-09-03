@@ -29,7 +29,7 @@ export default function Home() {
         </p>
         <div className="row reveal reveal-3" style={{ justifyContent: 'center' }}>
           <Link to="simulator"><Btn variant="accent" size="lg">Build Your Business System →</Btn></Link>
-          <Link to="high-ticket"><Btn variant="outline" size="lg">See a live demo</Btn></Link>
+          <Link to="high-ticket"><Btn variant="outline" size="lg">Explore a live engine</Btn></Link>
         </div>
         <div className="row reveal reveal-4" style={{ justifyContent: 'center', gap: 10 }}>
           <Badge variant="demo" dot>Summit demo</Badge>

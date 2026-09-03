@@ -1,12 +1,13 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from '../lib/router.jsx';
 import { useBusiness, makeBusiness } from '../lib/store.jsx';
-import { INDUSTRIES, MODES, industryById } from '../data/industries.js';
+import { MODES, industryById } from '../data/industries.js';
 import { READINESS_ACTIONS } from '../data/demo.js';
 import { FLAGSHIP_INDUSTRIES, GENERIC_SERVICES, genLead, genCustomer, genSlot } from '../data/leadsim.js';
 import {
   Btn, Badge, Card, Field, Input, TextArea, ColorInput, SectionTitle, Progress, Toast,
 } from '../components/ui.jsx';
+import { contrastText } from '../lib/color.js';
 
 const STEP_LABELS = ['Business', 'Details', 'Model', 'Build', 'System', 'Simulation', 'Marketing', 'Readiness', 'Reveal'];
 
@@ -238,6 +239,12 @@ export default function Simulator() {
         ))}
       </div>
 
+      {(step >= 5 && step <= 8) && (
+        <div style={{ marginBottom: 18 }}>
+          <Btn variant="ghost" size="sm" onClick={() => goto(step - 1)}>← Back</Btn>
+        </div>
+      )}
+
       <div key={step} className="panel">
         {/* ============ STEP 1 — CHOOSE YOUR BUSINESS ============ */}
         {step === 1 && (
@@ -371,7 +378,7 @@ export default function Simulator() {
         {/* ============ STEP 5 — PERSONALIZED SYSTEM ============ */}
         {step === 5 && (
           <div className="stack-lg">
-            <Card pad style={{ background: details.primary, borderColor: details.primary, color: '#fff' }} className="stack field-pop">
+            <Card pad style={{ background: details.primary, borderColor: details.primary, color: contrastText(details.primary) }} className="stack field-pop">
               <div className="row-between">
                 <div>
                   <span style={{ fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 700, opacity: 0.75 }}>
@@ -383,7 +390,7 @@ export default function Simulator() {
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                   <span style={{ width: 34, height: 34, borderRadius: '50%', background: details.secondary }} aria-hidden />
-                  <span style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 18, color: details.secondary }}>
+                  <span style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 18, color: contrastText(details.primary) }}>
                     {initialsOf(details.name)}
                   </span>
                 </div>
@@ -436,7 +443,6 @@ export default function Simulator() {
           <HighSim
             details={details}
             industryName={industryName}
-            services={services}
             lead={lead}
             phase={phase}
             slot={slot}
@@ -553,7 +559,7 @@ function initialsOf(name) {
 
 /* ================= HIGH-TICKET LIVE SIMULATION ================= */
 
-function HighSim({ details, industryName, services, lead, phase, slot, onSimulate, onQualify, onBook, onFollowUp, onConvert, onDone }) {
+function HighSim({ details, industryName, lead, phase, slot, onSimulate, onQualify, onBook, onFollowUp, onConvert, onDone }) {
   const displayScore = useCountUp(phase >= 2 ? lead?.score || 0 : 0, 700);
   const nodes = ['Attract', 'Capture', 'Qualify', 'Book', 'Follow Up', 'Convert'];
   const nodeDone = [phase >= 1, phase >= 1, phase >= 2, phase >= 3, phase >= 4, phase >= 5];
@@ -604,7 +610,7 @@ function HighSim({ details, industryName, services, lead, phase, slot, onSimulat
       <Card pad className="stack-lg">
         {!lead ? (
           <div className="empty" style={{ padding: '38px 16px' }}>
-            <div className="empty-glyph">⚡</div>
+            <div className="empty-glyph">→</div>
             <div className="empty-title">The engine is idle — generate a lead</div>
             <p className="empty-msg">One tap creates a realistic enquiry with source, need, budget, timeline and intent.</p>
           </div>
@@ -694,6 +700,8 @@ function LowSim({ details, config, industryName, customer, phase, onSimulate, on
   const nodes = ['Attract', 'Showcase', 'Book/Buy', 'Capture', 'Remind', 'Repeat'];
   const nodeDone = [phase >= 1, phase >= 2, phase >= 3, phase >= 4, phase >= 5, phase >= 6];
   const item = (config.services?.length ? config.services : ['Core product or service'])[0];
+  const cadence = (config.retention?.cadence || 'Every 4 weeks').toLowerCase();
+  const dayNum = cadence.startsWith('weekly') ? 7 : cadence.includes('week') ? 28 : 21;
 
   const action = phase === 0 ? { label: 'SIMULATE CUSTOMER', fn: onSimulate }
     : phase === 1 ? { label: 'VIEW OFFER', fn: onViewOffer }
@@ -737,7 +745,7 @@ function LowSim({ details, config, industryName, customer, phase, onSimulate, on
       <Card pad className="stack-lg">
         {!customer ? (
           <div className="empty" style={{ padding: '38px 16px' }}>
-            <div className="empty-glyph">⚡</div>
+            <div className="empty-glyph">→</div>
             <div className="empty-title">The engine is idle — simulate a customer</div>
             <p className="empty-msg">One tap creates a local customer discovering the business right now.</p>
           </div>
@@ -757,7 +765,7 @@ function LowSim({ details, config, industryName, customer, phase, onSimulate, on
             </div>
 
             {phase >= 2 && (
-              <div className="field-pop" style={{ background: details.primary, color: '#fff', borderRadius: 12, padding: '18px 20px' }}>
+              <div className="field-pop" style={{ background: details.primary, color: contrastText(details.primary), borderRadius: 12, padding: '18px 20px' }}>
                 <span style={{ fontSize: 10.5, letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 700, opacity: 0.75 }}>
                   {details.name} · current offer
                 </span>
@@ -784,7 +792,7 @@ function LowSim({ details, config, industryName, customer, phase, onSimulate, on
 
             {phase >= 5 && (
               <div className="chat-bubble field-pop stack" style={{ gap: 4 }}>
-                <strong style={{ fontSize: 13.5 }}>Day {config.retention?.cadence?.includes('week') ? '28' : '21'} — reminder sent</strong>
+                <strong style={{ fontSize: 13.5 }}>Day {dayNum} — reminder sent</strong>
                 <span className="sub small">
                   "Hi {customer.name.split(' ')[0]}! It's about time for your next visit — {details.offer} is on. Shall I book you in?" — {config.retention?.cadence || 'Every 4 weeks'} cadence (simulated).
                 </span>
@@ -841,7 +849,7 @@ function StudioStep({ initial, onDone }) {
         <p className="lede">Change any input — the advertising preview updates instantly. This is configuration becoming marketing.</p>
       </div>
 
-      <div className="grid-2" style={{ gridTemplateColumns: 'minmax(280px, 2fr) minmax(340px, 3fr)', alignItems: 'start' }}>
+      <div className="split">
         <Card pad className="stack">
           <div className="card-title">Brand inputs</div>
           <div className="card-sub">Live — every keystroke re-renders the preview.</div>
@@ -869,8 +877,8 @@ function StudioStep({ initial, onDone }) {
             <p className="sub">Brand name and offer are required for the preview.</p>
           ) : tab === 'social' ? (
             <div className="ad-frame field-pop" key={tab}>
-              <div style={{ background: s.primary, color: '#fff', padding: '16px 18px', display: 'flex', alignItems: 'center', gap: 12 }}>
-                <span style={{ width: 36, height: 36, borderRadius: '50%', background: s.secondary, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 12.5, color: '#fff' }}>
+              <div style={{ background: s.primary, color: contrastText(s.primary), padding: '16px 18px', display: 'flex', alignItems: 'center', gap: 12 }}>
+                <span style={{ width: 36, height: 36, borderRadius: '50%', background: s.secondary, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 12.5, color: contrastText(s.secondary) }}>
                   {initialsOf(s.name)}
                 </span>
                 <div>
@@ -881,7 +889,7 @@ function StudioStep({ initial, onDone }) {
               <div style={{ padding: 18 }} className="stack">
                 <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 20, lineHeight: 1.25 }}>{s.offer}</div>
                 <p className="sub" style={{ fontSize: 13 }}>{s.product}{s.price ? ` · ${s.price}` : ''}</p>
-                <Btn variant="accent" style={{ background: s.secondary, alignSelf: 'flex-start' }}>{s.cta} →</Btn>
+                <Btn variant="accent" style={{ background: s.secondary, color: contrastText(s.secondary), alignSelf: 'flex-start' }}>{s.cta} →</Btn>
               </div>
             </div>
           ) : tab === 'landing' ? (
@@ -895,7 +903,7 @@ function StudioStep({ initial, onDone }) {
                 <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 26, lineHeight: 1.15 }}>{s.offer}</div>
                 <p className="sub">{s.product}{s.price ? ` — ${s.price}` : ''}</p>
                 <div className="row">
-                  <Btn variant="accent" style={{ background: s.primary }}>{s.cta}</Btn>
+                  <Btn variant="accent" style={{ background: s.primary, color: contrastText(s.primary) }}>{s.cta}</Btn>
                   <Btn variant="outline">Learn more</Btn>
                 </div>
                 <div className="row" style={{ gap: 16 }}>
@@ -918,7 +926,7 @@ function StudioStep({ initial, onDone }) {
           ) : (
             <div className="phone field-pop" key={tab}>
               <div className="phone-head" style={{ background: '#075E54', color: '#fff' }}>
-                <span className="phone-avatar" style={{ background: s.primary }}>{initialsOf(s.name)}</span>
+                <span className="phone-avatar" style={{ background: s.primary, color: contrastText(s.primary) }}>{initialsOf(s.name)}</span>
                 <div>
                   <div className="phone-title">{s.name}</div>
                   <div className="phone-subtitle">WhatsApp Business · preview</div>
@@ -1007,7 +1015,7 @@ function ReadinessStep({ mode, answers, setAnswers, onDone }) {
             <span style={{ fontSize: 13.5, color: 'var(--ink-2)', flex: 1, minWidth: 210 }}>{q.label}</span>
             <div className="seg">
               {[['Yes', 2], ['Partly', 1], ['No', 0]].map(([label, pts]) => (
-                <button key={label} type="button" className={answers[q.id] === pts ? 'active' : ''} onClick={() => setAnswers((a) => ({ ...a, [q.id]: pts }))}>
+                <button key={label} type="button" className={answers[q.id] === pts ? 'active' : ''} onClick={() => setAnswers((a) => ({ ...a, [q.id]: pts }))} aria-label={q.label}>
                   {label}
                 </button>
               ))}

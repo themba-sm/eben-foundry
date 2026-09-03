@@ -15,7 +15,7 @@ One engine, many business models:
 
 1. **Experience / Home** — entry point into the flagship journey
 2. **Build Your Business System** — the flagship 9-step journey: choose industry → define business → determine model → cinematic build → personalized system → live simulation → Marketing Studio → Readiness → the reveal
-3. **Business Simulator (flagship)** — as above
+3. **Build Your System (flagship)** — as above
 4. **High-Ticket Engine** — lead capture, qualification scoring (budget/need/location/timeline/intent), pipeline, booking, follow-ups, conversion tracking
 5. **Low-Ticket Engine** — service showcase, booking flow, customer records, repeat-visit reminders, loyalty, campaign tracking
 6. **Marketing Studio** — generates social ad, promotional offer, landing hero, WhatsApp CTA and lead-gen campaign previews from brand configuration

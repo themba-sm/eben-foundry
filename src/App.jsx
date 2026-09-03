@@ -101,7 +101,7 @@ function Footer() {
             <span className="brand-name">Eben Foundry</span>
           </Link>
           <div className="footer-links">
-            <Link to="simulator">Business Simulator</Link>
+            <Link to="simulator">Build Your System</Link>
             <Link to="readiness">Readiness</Link>
             <Link to="about">About</Link>
           </div>
@@ -138,8 +138,9 @@ export default function App() {
   return (
     <BusinessProvider>
       <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+        <a href="#main" className="skip-link">Skip to content</a>
         <Header route={PAGES[route] ? route : 'home'} />
-        <main style={{ flex: 1 }}>
+        <main id="main" style={{ flex: 1 }}>
           <Page />
         </main>
         <Footer />

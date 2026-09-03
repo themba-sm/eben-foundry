@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { Link } from '../lib/router.jsx';
 import { useBusiness, DEMO_LOW_BUSINESS, makeBusiness } from '../lib/store.jsx';
 import { MODES, industryById } from '../data/industries.js';
+import { contrastText } from '../lib/color.js';
 import { DEMO_CUSTOMERS, DEMO_CAMPAIGNS } from '../data/demo.js';
 import { Btn, Badge, Card, Field, Input, Select, Modal, Stat, EmptyState, Toast, SectionTitle } from '../components/ui.jsx';
 
@@ -104,7 +105,7 @@ export default function LowTicket() {
           <EmptyState
             glyph="LT"
             title="No low-ticket business configured yet"
-            message="Run the Business Simulator to configure one, or load a demo salon with sample customers to see the full workflow immediately."
+            message="Run Build Your System to configure one, or load a demo salon with sample customers to see the full workflow immediately."
             actions={[
               <Link key="sim" to="simulator"><Btn variant="accent">Configure a business</Btn></Link>,
               <Btn key="demo" variant="outline" onClick={loadDemo}>Load demo business + customers</Btn>,
@@ -144,13 +145,13 @@ export default function LowTicket() {
 
       {/* Offer + showcase */}
       <div style={{ marginBottom: 28 }}>
-        <Card pad className="spread" style={{ background: business.primary, borderColor: business.primary, color: '#fff' }}>
+        <Card pad className="spread" style={{ background: business.primary, borderColor: business.primary, color: contrastText(business.primary) }}>
           <div className="stack" style={{ gap: 4 }}>
             <span style={{ fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', opacity: 0.75, fontWeight: 700 }}>Current offer</span>
             <span style={{ fontFamily: 'var(--font-display)', fontSize: 24, fontWeight: 600, letterSpacing: '-0.01em' }}>{business.offer}</span>
             <span style={{ fontSize: 13, opacity: 0.8 }}>{business.audience} · {business.location}</span>
           </div>
-          <Btn variant="outline" size="lg" style={{ borderColor: 'rgba(255,255,255,0.4)', color: '#fff' }} onClick={() => document.getElementById('showcase')?.scrollIntoView({ behavior: 'smooth' })}>
+          <Btn variant="outline" size="lg" style={{ borderColor: 'rgba(128,128,128,0.45)', color: contrastText(business.primary) }} onClick={() => document.getElementById('showcase')?.scrollIntoView({ behavior: 'smooth' })}>
             See what's on offer ↓
           </Btn>
         </Card>
@@ -179,7 +180,7 @@ export default function LowTicket() {
       </div>
 
       {/* Customers & bookings */}
-      <div className="grid-2" style={{ gridTemplateColumns: 'minmax(340px, 3fr) minmax(280px, 2fr)', alignItems: 'start', marginBottom: 36 }}>
+      <div className="split" style={{ marginBottom: 36 }}>
         <Card pad className="stack">
           <div className="card-head">
             <div>

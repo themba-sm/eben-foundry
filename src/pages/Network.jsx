@@ -73,7 +73,7 @@ export default function Network() {
         </span>
       </div>
 
-      <div className="grid-2" style={{ gridTemplateColumns: 'minmax(300px, 2fr) minmax(340px, 3fr)', alignItems: 'start' }}>
+      <div className="split">
         <Card pad className="stack">
           <div>
             <div className="card-title">Demo buyer requirement</div>
