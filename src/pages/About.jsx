@@ -80,7 +80,7 @@ export default function About() {
           <h3 className="display">See the thesis in action.</h3>
           <p className="sub">Configure a business and watch the same engine adapt to it.</p>
         </div>
-        <Link to="simulator"><Btn variant="accent" size="lg">Build my growth system →</Btn></Link>
+        <Link to="simulator"><Btn variant="accent" size="lg">Build Your Business System →</Btn></Link>
       </Card>
     </div>
   );

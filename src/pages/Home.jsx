@@ -3,7 +3,7 @@ import { Btn, Badge, Card, SectionTitle } from '../components/ui.jsx';
 import { MODES } from '../data/industries.js';
 
 const MODULES = [
-  { id: 'simulator', title: 'Business Simulator', desc: 'Configure an industry, mode and offer — the system builds itself around it.' },
+  { id: 'simulator', title: 'Build Your Business System', desc: 'The flagship journey: your business in, a configured growth system out — in about 3 minutes.' },
   { id: 'high-ticket', title: 'High-Ticket Engine', desc: 'Capture, qualify, score, book, follow up and convert considered purchases.' },
   { id: 'low-ticket', title: 'Low-Ticket Engine', desc: 'Showcase, book, remind and retain everyday, repeat demand.' },
   { id: 'marketing', title: 'Marketing Studio', desc: 'Turn business information and brand colours into marketing previews.' },
@@ -28,7 +28,7 @@ export default function Home() {
           infrastructure. Eben Foundry configures one engine to the way your business actually sells.
         </p>
         <div className="row reveal reveal-3" style={{ justifyContent: 'center' }}>
-          <Link to="simulator"><Btn variant="accent" size="lg">Build my growth system →</Btn></Link>
+          <Link to="simulator"><Btn variant="accent" size="lg">Build Your Business System →</Btn></Link>
           <Link to="high-ticket"><Btn variant="outline" size="lg">See a live demo</Btn></Link>
         </div>
         <div className="row reveal reveal-4" style={{ justifyContent: 'center', gap: 10 }}>

@@ -14,7 +14,7 @@ import About from './pages/About.jsx';
 
 const NAV_ITEMS = [
   { id: 'home', label: 'Experience' },
-  { id: 'simulator', label: 'Business Simulator' },
+  { id: 'simulator', label: 'Build Your System' },
   { id: 'high-ticket', label: 'High-Ticket Engine' },
   { id: 'low-ticket', label: 'Low-Ticket Engine' },
   { id: 'marketing', label: 'Marketing Studio' },

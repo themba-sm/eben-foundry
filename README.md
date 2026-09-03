@@ -13,15 +13,16 @@ One engine, many business models:
 
 ## Modules
 
-1. **Experience / Home** — entry point into "Build your growth system"
-2. **Business Simulator** — choose an industry, mode, brand colours and offer; the system generates a business-specific demonstration
-3. **High-Ticket Engine** — lead capture, qualification scoring (budget/need/location/timeline/intent), pipeline, booking, follow-ups, conversion tracking
-4. **Low-Ticket Engine** — service showcase, booking flow, customer records, repeat-visit reminders, loyalty, campaign tracking
-5. **Marketing Studio** — generates social ad, promotional offer, landing hero, WhatsApp CTA and lead-gen campaign previews from brand configuration
-6. **Readiness** — 7-area self-assessment returning overall readiness, strengths, gaps and recommended next actions
-7. **Opportunity Network** — demo supplier directory with requirement matching (clearly labelled DEMO DATA)
-8. **Impact Dashboard** — illustrative pilot targets (clearly labelled, not real achievements)
-9. **About** — scope honesty: what is working demo vs simulated
+1. **Experience / Home** — entry point into the flagship journey
+2. **Build Your Business System** — the flagship 9-step journey: choose industry → define business → determine model → cinematic build → personalized system → live simulation → Marketing Studio → Readiness → the reveal
+3. **Business Simulator (flagship)** — as above
+4. **High-Ticket Engine** — lead capture, qualification scoring (budget/need/location/timeline/intent), pipeline, booking, follow-ups, conversion tracking
+5. **Low-Ticket Engine** — service showcase, booking flow, customer records, repeat-visit reminders, loyalty, campaign tracking
+6. **Marketing Studio** — generates social ad, promotional offer, landing hero, WhatsApp CTA and lead-gen campaign previews from brand configuration
+7. **Readiness** — 7-area self-assessment returning overall readiness, strengths, gaps and recommended next actions
+8. **Opportunity Network** — demo supplier directory with requirement matching (clearly labelled DEMO DATA)
+9. **Impact Dashboard** — illustrative pilot targets (clearly labelled, not real achievements)
+10. **About** — scope honesty: what is working demo vs simulated
 
 ## Tech
 
