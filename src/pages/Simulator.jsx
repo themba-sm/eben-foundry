@@ -344,7 +344,7 @@ export default function Simulator() {
               {['high', 'low'].map((m) => (
                 <button
                   key={m}
-                  className={`mode-card mode-card--${m} ${mode === m ? 'selected' : ''}`}
+                  className={`mode-card ${mode === m ? 'selected' : ''}`}
                   onClick={() => setMode(m)}
                 >
                   {recommended === m && <span className="mode-tag">Recommended</span>}
