@@ -34,7 +34,7 @@ function Header({ route }) {
     <header className="nav">
       <div className="nav-inner">
         <Link to="home" className="brand">
-          <span className="brand-mark">EF</span>
+          <img src="/brand/eben-mark.png" alt="Eben Foundry" className="brand-mark" />
           <span className="brand-name">Eben Foundry</span>
         </Link>
         <nav className="nav-links" aria-label="Primary">
@@ -99,7 +99,7 @@ function Footer() {
       <div className="container footer-inner">
         <div className="row-between">
           <Link to="home" className="brand">
-            <span className="brand-mark">EF</span>
+            <img src="/brand/eben-mark.png" alt="Eben Foundry" className="brand-mark" />
             <span className="brand-name">Eben Foundry</span>
           </Link>
           <div className="footer-links">

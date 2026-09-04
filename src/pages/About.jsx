@@ -5,6 +5,7 @@ export default function About() {
   return (
     <div className="container-narrow page">
       <div className="page-head">
+        <img src="/brand/eben-lockup.png" alt="Eben Foundry — Built on a foundation. Forged for impact." className="about-lockup" />
         <span className="eyebrow">About</span>
         <h1 className="display">Eben Foundry is growth infrastructure, not another tool.</h1>
         <p className="lede">
