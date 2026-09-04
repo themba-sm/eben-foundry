@@ -2,6 +2,17 @@ import { useMemo, useState } from 'react';
 import { Link } from '../lib/router.jsx';
 import { useBusiness, DEMO_HIGH_BUSINESS, makeBusiness } from '../lib/store.jsx';
 import { QUAL_OPTIONS, LEAD_STATUSES, scoreLead, statusFromScore, MODES, industryById } from '../data/industries.js';
+
+// New → cool and unworked. Qualified → warming up. High Intent → hottest,
+// the site's red accent. Booked/Won → success green. Lost → the danger tone.
+const STATUS_TINT = {
+  new: 'info',
+  qualified: 'warn',
+  'high-intent': 'accent',
+  booked: 'ok',
+  won: 'ok',
+  lost: 'bad',
+};
 import { DEMO_LEADS } from '../data/demo.js';
 import { Btn, Badge, Card, Field, Input, Select, Modal, Stat, EmptyState, Progress, Toast, SectionTitle } from '../components/ui.jsx';
 
@@ -297,9 +308,10 @@ export default function HighTicket() {
         <div className="pipeline">
           {LEAD_STATUSES.map((status) => {
             const col = leads.filter((l) => l.status === status.id);
+            const tint = STATUS_TINT[status.id] || 'info';
             return (
-              <div className="pipe-col" key={status.id}>
-                <div className="pipe-head">
+              <div className={`pipe-col pipe-col--${tint}`} key={status.id}>
+                <div className={`pipe-head pipe-head--${tint}`}>
                   <span>{status.label}</span>
                   <span className="pipe-count">{col.length}</span>
                 </div>

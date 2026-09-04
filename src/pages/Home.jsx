@@ -3,13 +3,13 @@ import { Btn, Badge, Card, SectionTitle } from '../components/ui.jsx';
 import { MODES } from '../data/industries.js';
 
 const MODULES = [
-  { id: 'simulator', title: 'Build Your Business System', desc: 'The flagship journey: your business in, a configured growth system out — in about 3 minutes.' },
-  { id: 'high-ticket', title: 'High-Ticket Engine', desc: 'Capture, qualify, score, book, follow up and convert considered purchases.' },
-  { id: 'low-ticket', title: 'Low-Ticket Engine', desc: 'Showcase, book, remind and retain everyday, repeat demand.' },
-  { id: 'marketing', title: 'Marketing Studio', desc: 'Turn business information and brand colours into marketing previews.' },
-  { id: 'readiness', title: 'Readiness Assessment', desc: 'Score seven growth-readiness areas and get recommended next actions.' },
-  { id: 'network', title: 'Opportunity Network', desc: 'A demonstration of verified suppliers meeting buyer requirements. Demo data.' },
-  { id: 'impact', title: 'Impact Dashboard', desc: 'Illustrative pilot targets for the programme. Not real achievements.' },
+  { id: 'simulator', title: 'Build Your Business System', desc: 'The flagship journey: your business in, a configured growth system out — in about 3 minutes.', tint: 'neutral' },
+  { id: 'high-ticket', title: 'High-Ticket Engine', desc: 'Capture, qualify, score, book, follow up and convert considered purchases.', tint: 'accent' },
+  { id: 'low-ticket', title: 'Low-Ticket Engine', desc: 'Showcase, book, remind and retain everyday, repeat demand.', tint: 'ok' },
+  { id: 'marketing', title: 'Marketing Studio', desc: 'Turn business information and brand colours into marketing previews.', tint: 'info' },
+  { id: 'readiness', title: 'Readiness Assessment', desc: 'Score seven growth-readiness areas and get recommended next actions.', tint: 'warn' },
+  { id: 'network', title: 'Opportunity Network', desc: 'A demonstration of verified suppliers meeting buyer requirements. Demo data.', tint: 'accent' },
+  { id: 'impact', title: 'Impact Dashboard', desc: 'Illustrative pilot targets for the programme. Not real achievements.', tint: 'ok' },
 ];
 
 function WorldEcho() {
@@ -60,7 +60,7 @@ export default function Home() {
           center
         />
         <div className="grid-2">
-          <Card pad hover className="stack-lg">
+          <Card pad hover className="stack-lg card-tint-accent">
             <div className="card-head">
               <div>
                 <Badge variant="accent">High-Ticket</Badge>
@@ -78,7 +78,7 @@ export default function Home() {
             </div>
             <Link to="high-ticket"><Btn variant="outline">Open the High-Ticket Engine</Btn></Link>
           </Card>
-          <Card pad hover className="stack-lg">
+          <Card pad hover className="stack-lg card-tint-ok">
             <div className="card-head">
               <div>
                 <Badge variant="ok">Low-Ticket / High-Frequency</Badge>
@@ -109,7 +109,7 @@ export default function Home() {
         <div className="grid-3">
           {MODULES.map((m, i) => (
             <Link to={m.id} key={m.id}>
-              <Card pad hover className="stack reveal" style={{ height: '100%' }}>
+              <Card pad hover className={`stack reveal card-tint-${m.tint}`} style={{ height: '100%' }}>
                 <span className="eyebrow" style={{ fontSize: 10 }}>
                   {String(i + 1).padStart(2, '0')}
                 </span>
