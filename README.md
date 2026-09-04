@@ -62,7 +62,7 @@ Interfaces and data labelled **DEMO** or **PREVIEW** are simulated: lead scoring
 
 ## Cinematic intro
 
-The homepage opens with a 7-second, silent, muted brand intro (`public/media/eben-intro.mp4`, user-provided asset, used unmodified). Architecture: `CinematicIntro` component → video layer → 420ms opacity transition → main experience.
+The homepage opens with a 7-second, silent, muted brand intro (`public/media/eben-intro.mp4`, user-provided asset, used unmodified). Architecture: `CinematicIntro` component → video layer → 560ms opacity crossfade → main experience. Full-screen ambient treatment: the sharp, uncropped film (object-fit: contain) plays over a defocused, cover-scaled copy of the same footage, so the entire viewport is the video's world with no empty bars.
 
 Behavior:
 - Plays once per browser session (`sessionStorage`), not on every internal navigation.

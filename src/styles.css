@@ -656,7 +656,7 @@ table.data tr:last-child td { border-bottom: none; }
   position: fixed; inset: 0; z-index: 500;
   background: #15171C; /* matches --ink — no white flash while the video loads */
   display: flex; align-items: center; justify-content: center;
-  opacity: 1; transition: opacity 0.42s ease;
+  opacity: 1; transition: opacity 0.56s ease;
 }
 .cine-overlay.fading { opacity: 0; }
 
@@ -666,13 +666,26 @@ table.data tr:last-child td { border-bottom: none; }
   display: flex; align-items: center; justify-content: center;
 }
 
-/* object-fit: contain — the composition is never cropped, on any screen.
-   Letterboxing (film-style) reads as intentional, not like a missing asset. */
+/* Ambient layer — fills the ENTIRE screen: same footage scaled to cover,
+   softly defocused so the video's live colours bleed edge-to-edge.
+   The whole viewport becomes the video's world — no empty bars. */
+.cine-backdrop {
+  position: absolute; inset: 0; z-index: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transform: scale(1.14); /* keeps the blur edge from leaking at screen borders */
+  filter: blur(34px) brightness(0.88);
+  background: #15171C;
+}
+
+/* The sharp film itself — object-fit: contain, so the composition and the
+   forged mark are never cropped, on any screen or orientation. */
 .cine-video {
+  position: relative; z-index: 1;
   max-width: 100%; max-height: 100%;
   width: 100%; height: 100%;
   object-fit: contain;
-  background: #15171C;
+  background: transparent;
 }
 
 .cine-enter {

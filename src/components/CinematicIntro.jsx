@@ -37,7 +37,7 @@ export default function CinematicIntro({ onComplete }) {
     setFading(true);
     const t = setTimeout(() => {
       onComplete(reason);
-    }, 420); /* short, controlled opacity transition — no flashy effects */
+    }, 560); /* controlled crossfade into the site — no flashy effects */
     timers.current.push(t);
   };
 
@@ -111,6 +111,20 @@ export default function CinematicIntro({ onComplete }) {
       aria-modal="true"
     >
       <div className="cine-stage">
+        {/* Ambient layer: same footage, covering the full screen, softly out of
+            focus — so the entire viewport is the video's world and the sharp,
+            uncropped mark floats centre-stage. Same URL = one network fetch. */}
+        <video
+          className="cine-backdrop"
+          src={VIDEO_SRC}
+          poster={POSTER_SRC}
+          muted
+          playsInline
+          preload="auto"
+          autoPlay
+          aria-hidden="true"
+          tabIndex={-1}
+        />
         <video
           ref={videoRef}
           className="cine-video"
