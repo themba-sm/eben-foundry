@@ -26,10 +26,9 @@ One engine, many business models:
 
 ## Brand identity
 
-- Official logo: the user-provided mark (graphite forged-F glyph + gold chip on warm cream). Assets live in `public/brand/` — `eben-mark.png` (mark only, transparent), `eben-lockup.png` (full lockup with wordmark + tagline, transparent), `eben-favicon.png` (rounded cream favicon).
+- Official logo: the user-provided mark (forged glyph on warm cream). Assets live in `public/brand/` — `eben-mark.png` (mark only, transparent), `eben-lockup.png` (full lockup with wordmark + tagline, transparent), `eben-favicon.png` (rounded cream favicon).
 - The real logo appears wherever the brand appears: navbar, footer, About page header, and browser tab (favicon).
-- Palette is drawn from the official logo: warm cream paper (#F1E9DC base, #F8F2E6 surfaces — no stark whites), graphite ink (#1B1712), and forged bronze accent (#B8823E). Body background carries a subtle bronze/ink radial gradient instead of flat colour; cards use a gentle cream gradient; nav and footer are graphite bands with cream text, bookending the page.
-- All text/background pairs were contrast-audited to WCAG AA (≥4.5:1) — including text on the bronze accent (dark ink text, not white) and on the graphite bands.
+- Palette: unchanged original design system — light architectural base (#F6F4EF), ink typography (#15171C), ember red accent (#C8401C).
 
 ## Tech
 
