@@ -688,6 +688,26 @@ table.data tr:last-child td { border-bottom: none; }
   background: transparent;
 }
 
+/* ------------------------------------------------------------
+   Responsive stage shape — device-appropriate framing.
+   Landscape (laptop / desktop / tablet landscape): full-bleed wide
+   cinematic presentation (contain + ambient bleed).
+   Portrait (mobile / tablet portrait): the film presents as a
+   PORTRAIT A4 poster — a premium, document-like frame that fills
+   the height elegantly, centred over the ambient layer.
+   ------------------------------------------------------------ */
+@media (orientation: portrait) {
+  .cine-video {
+    width: auto;
+    height: min(94vh, 133vw);   /* A4 height, width-safe on narrow screens */
+    height: min(94svh, 133vw);  /* dynamic viewport: no hidden chrome issues */
+    aspect-ratio: 210 / 297;    /* A4 portrait */
+    object-fit: cover;          /* fills the A4 frame, centre-weighted mark */
+    border-radius: 16px;
+    box-shadow: 0 22px 70px rgba(0, 0, 0, 0.38);
+  }
+}
+
 .cine-enter {
   position: absolute; z-index: 2;
   bottom: 14%; left: 50%; transform: translateX(-50%);
