@@ -59,3 +59,17 @@ npm run preview   # local preview of the production build
 ## Honesty note
 
 Interfaces and data labelled **DEMO** or **PREVIEW** are simulated: lead scoring is demonstrated logic, suppliers are seeded records, impact figures are illustrative pilot targets. Nothing here is presented as live verification, real analytics or real achievements.
+
+## Cinematic intro
+
+The homepage opens with a 7-second, silent, muted brand intro (`public/media/eben-intro.mp4`, user-provided asset, used unmodified). Architecture: `CinematicIntro` component → video layer → 420ms opacity transition → main experience.
+
+Behavior:
+- Plays once per browser session (`sessionStorage`), not on every internal navigation.
+- Respects `prefers-reduced-motion` — skips the video entirely, reveals instantly.
+- Autoplay-blocked browsers get a minimal "Enter Eben Foundry" tap prompt over the poster frame.
+- Slow connections / video errors auto-resolve to the site after ~4.2s — never traps the user.
+- Skippable via a visible "Skip intro" control or the Escape key.
+- The app mounts underneath the intro overlay immediately — it never blocks interactivity.
+- A subtle "Replay intro" control lives in the homepage's world-echo band (secondary, not a primary CTA).
+- The final video frame (`eben-intro-poster.jpg`) is reused, letterboxed and never cropped, as a small hero band at the top of the homepage — visual continuity without turning the whole app dark.

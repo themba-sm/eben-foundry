@@ -647,3 +647,98 @@ table.data tr:last-child td { border-bottom: none; }
 .tab:focus-visible, .seg button:focus-visible, .nav-link:focus-visible {
   outline: 2px solid var(--accent); outline-offset: 2px;
 }
+
+/* ============================================================
+   CINEMATIC INTRO — Video Layer / Transition Layer
+   ============================================================ */
+
+.cine-overlay {
+  position: fixed; inset: 0; z-index: 500;
+  background: #15171C; /* matches --ink — no white flash while the video loads */
+  display: flex; align-items: center; justify-content: center;
+  opacity: 1; transition: opacity 0.42s ease;
+}
+.cine-overlay.fading { opacity: 0; }
+
+.cine-stage {
+  position: relative;
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* object-fit: contain — the composition is never cropped, on any screen.
+   Letterboxing (film-style) reads as intentional, not like a missing asset. */
+.cine-video {
+  max-width: 100%; max-height: 100%;
+  width: 100%; height: 100%;
+  object-fit: contain;
+  background: #15171C;
+}
+
+.cine-enter {
+  position: absolute; z-index: 2;
+  bottom: 14%; left: 50%; transform: translateX(-50%);
+  background: transparent; border: 1px solid rgba(246,244,239,0.5);
+  color: #F6F4EF; font-family: var(--font-body); font-weight: 600; font-size: 13px;
+  letter-spacing: 0.04em; padding: 12px 26px; border-radius: 999px; cursor: pointer;
+  transition: background 0.18s ease, border-color 0.18s ease;
+}
+.cine-enter:hover, .cine-enter:focus-visible { background: rgba(246,244,239,0.12); border-color: #F6F4EF; }
+
+.cine-skip {
+  position: absolute; z-index: 2; bottom: 22px; right: 22px;
+  background: transparent; border: none; color: rgba(246,244,239,0.62);
+  font-family: var(--font-body); font-size: 12.5px; font-weight: 500;
+  letter-spacing: 0.03em; padding: 8px 12px; cursor: pointer;
+  transition: color 0.18s ease;
+}
+.cine-skip:hover, .cine-skip:focus-visible { color: #F6F4EF; }
+
+@media (max-width: 640px) {
+  .cine-enter { bottom: 16%; font-size: 12.5px; padding: 11px 22px; }
+  .cine-skip { bottom: 16px; right: 16px; }
+}
+
+/* ============================================================
+   HOMEPAGE — "world echo" hero band (continuation of the intro)
+   ============================================================ */
+
+.world-echo {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  background: #15171C;
+  overflow: hidden;
+  border-radius: 0 0 18px 18px;
+  margin-top: -1px;
+}
+.world-echo img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: contain; /* preserve composition — never crop the mark */
+}
+.world-echo::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(21,23,28,0) 40%, var(--bg) 100%);
+}
+.world-echo-caption {
+  position: absolute; left: 20px; bottom: 14px; z-index: 2;
+  font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(246,244,239,0.82);
+}
+.world-echo-replay {
+  position: absolute; right: 16px; bottom: 12px; z-index: 2;
+  font-size: 11px; font-weight: 600; color: rgba(246,244,239,0.55);
+  background: transparent; border: none; cursor: pointer; padding: 6px 8px;
+  transition: color 0.18s ease;
+}
+.world-echo-replay:hover, .world-echo-replay:focus-visible { color: #F6F4EF; }
+
+@media (max-width: 640px) {
+  .world-echo { height: 150px; border-radius: 0 0 14px 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cine-overlay { transition: none; }
+}

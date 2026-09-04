@@ -12,9 +12,23 @@ const MODULES = [
   { id: 'impact', title: 'Impact Dashboard', desc: 'Illustrative pilot targets for the programme. Not real achievements.' },
 ];
 
+function WorldEcho() {
+  const replay = () => window.dispatchEvent(new CustomEvent('eben:replay-intro'));
+  return (
+    <div className="world-echo" role="img" aria-label="The forged Eben Foundry mark, from the brand introduction">
+      <img src="/media/eben-intro-poster.jpg" alt="" aria-hidden="true" loading="eager" />
+      <span className="world-echo-caption">The world of Eben Foundry</span>
+      <button type="button" className="world-echo-replay" onClick={replay}>
+        Replay intro ↻
+      </button>
+    </div>
+  );
+}
+
 export default function Home() {
   return (
     <div className="container page">
+      <WorldEcho />
       {/* Hero */}
       <section style={{ padding: '72px 0 64px', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 22 }}>
         <div className="reveal">
