@@ -53,7 +53,7 @@ export default function Readiness() {
         </p>
       </div>
 
-      <Card pad className="stack-lg">
+      <Card pad className="stack" style={{ gap: 14 }}>
         <div className="row-between">
           <span className="field-label">
             {answeredCount} of {totalQuestions} statements answered
@@ -61,21 +61,24 @@ export default function Readiness() {
           <div style={{ width: 180 }}><Progress value={answeredCount} max={totalQuestions} ink /></div>
         </div>
 
-        {READINESS_AREAS.map((area) => (
-          <div key={area.id} className="stack" style={{ gap: 10 }}>
-            <div className="row-between">
-              <strong style={{ fontFamily: 'var(--font-display)', fontSize: 16 }}>{area.label}</strong>
+        {READINESS_AREAS.map((area, ai) => (
+          <div key={area.id} className="assess-area">
+            <div className="assess-head">
+              <div className="assess-title">
+                <span className="assess-num">{String(ai + 1).padStart(2, '0')}</span>
+                {area.label}
+              </div>
               {submitted && (
-                <span className="sub mono">{areaScore(area, answers).pct}%</span>
+                <span className="assess-pct mono">{areaScore(area, answers).pct}%</span>
               )}
             </div>
             {area.statements.map((st, i) => {
               const key = `${area.id}-${i}`;
               const value = answers[key];
               return (
-                <div key={key} className="row-between" style={{ gap: 10, borderBottom: '1px solid var(--line)', paddingBottom: 10 }}>
-                  <span style={{ fontSize: 13.5, color: 'var(--ink-2)', flex: 1, minWidth: 220 }}>{st}</span>
-                  <div className="seg">
+                <div key={key} className="assess-row">
+                  <span className={value !== undefined ? 'assess-statement answered' : 'assess-statement'}>{st}</span>
+                  <div className="seg" role="group" aria-label={st}>
                     {[
                       ['Yes', 2],
                       ['Partly', 1],
@@ -87,6 +90,7 @@ export default function Readiness() {
                         className={value === pts ? 'active' : ''}
                         onClick={() => setAnswer(key, pts)}
                         aria-label={`${st} — ${label}`}
+                        aria-pressed={value === pts}
                       >
                         {label}
                       </button>
@@ -143,7 +147,7 @@ export default function Readiness() {
 
           <div className="grid-2">
             <Card pad className="stack">
-              <span className="eyebrow" style={{ color: 'var(--ok)' }}>Strengths</span>
+              <span className="eyebrow assess-result-label">Strengths</span>
               {result.strengths.length ? (
                 <div className="stack" style={{ gap: 8 }}>
                   {result.strengths.map((s) => (
@@ -158,7 +162,7 @@ export default function Readiness() {
               )}
             </Card>
             <Card pad className="stack">
-              <span className="eyebrow" style={{ color: 'var(--bad)' }}>Gaps</span>
+              <span className="eyebrow assess-gap-label">Gaps</span>
               {result.gaps.length ? (
                 <div className="stack" style={{ gap: 8 }}>
                   {result.gaps.map((g) => (
@@ -179,7 +183,7 @@ export default function Readiness() {
               <span className="eyebrow">Recommended next actions</span>
               <div className="stack" style={{ gap: 12 }}>
                 {result.gaps.map((g) => (
-                  <div key={g.id} className="stack" style={{ gap: 4, borderLeft: '3px solid var(--accent)', paddingLeft: 12 }}>
+                  <div key={g.id} className="stack assess-action" style={{ gap: 4 }}>
                     <strong style={{ fontSize: 13.5 }}>{g.label}</strong>
                     <span className="sub small">{READINESS_ACTIONS[g.id]}</span>
                   </div>

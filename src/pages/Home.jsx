@@ -109,16 +109,14 @@ export default function Home() {
         <div className="grid-3">
           {MODULES.map((m, i) => (
             <Link to={m.id} key={m.id}>
-              <Card pad hover className="stack reveal" style={{ height: '100%' }}>
-                <div className="row-between" style={{ alignItems: 'baseline' }}>
-                  <span className="eyebrow" style={{ fontSize: 10 }}>
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
+              <Card pad hover className="module-card reveal">
+                <div className="module-meta">
+                  <span className="module-num">{String(i + 1).padStart(2, '0')}</span>
                   <span className="module-kind">{m.kind}</span>
                 </div>
                 <div className="card-title">{m.title}</div>
                 <p className="sub" style={{ flex: 1 }}>{m.desc}</p>
-                <span style={{ color: 'var(--accent)', fontWeight: 600, fontSize: 13 }}>Open module →</span>
+                <span className="module-cta">Open module →</span>
               </Card>
             </Link>
           ))}
