@@ -88,8 +88,12 @@ export const CAMPAIGN_INDUSTRIES = [
       height: 1254,
       alt: 'Finished Gym & Fitness campaign creative 01 — EBEN Foundry marketing execution',
     },
-    // asset 02 is being finalised — the presentation degrades gracefully until it is added
-    asset02: null,
+    asset02: {
+      src: '/campaigns/gym-02.jpg',
+      width: 1133,
+      height: 1388,
+      alt: 'Finished Gym & Fitness campaign creative 02 — EBEN Foundry marketing execution',
+    },
   },
   {
     id: 'restaurant',
