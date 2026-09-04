@@ -513,7 +513,7 @@ export default function Simulator() {
 
             <div className="grid-2" style={{ textAlign: 'left' }}>
               <Card pad className="stack">
-                <Badge variant="accent">High-Ticket</Badge>
+                <Badge variant="crimson">High-Ticket</Badge>
                 <span className="display" style={{ fontSize: 17 }}>Lead → Qualification → Appointment → Conversion</span>
                 <span className="sub small">Fewer customers, higher-value transactions — worked deliberately.</span>
               </Card>

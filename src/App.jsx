@@ -81,7 +81,7 @@ function Header({ route }) {
               Active configuration: <strong style={{ color: 'var(--ink)' }}>{business.name}</strong>
             </span>
             <span className="row" style={{ gap: 8 }}>
-              <Badge variant={business.mode === 'high' ? 'accent' : 'ok'}>
+              <Badge variant={business.mode === 'high' ? 'crimson' : 'ok'}>
                 {business.mode === 'high' ? 'High-Ticket' : 'Low-Ticket'}
               </Badge>
               <Badge variant="demo">Demo</Badge>

@@ -33,6 +33,11 @@
   --gold: #B29655;
   --gold-ink: #8A7440;
   --gold-soft: #EFE7D3;
+  /* High-Ticket engine identity — distinct from Low-Ticket green */
+  --engine-high: #A23B2E;
+  --engine-high-deep: #7F2E23;
+  --engine-high-ink: #7A2B21;
+  --engine-high-soft: #F3E2DD;
   /* Text colour on dark green */
   --cream: #F5F2E8;
   --ok: #1E7A46;
@@ -232,6 +237,7 @@ h3.display { font-size: 22px; }
 .badge-bad { background: var(--bad-soft); color: var(--bad); }
 .badge-muted { background: rgba(107,112,120,0.09); color: var(--muted); }
 .badge-accent { background: var(--accent-soft); color: var(--accent-ink); }
+.badge-crimson { background: var(--engine-high-soft); color: var(--engine-high-ink); border-color: rgba(122,43,33,0.18); }
 .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
 
 .chip {

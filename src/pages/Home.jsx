@@ -63,7 +63,7 @@ export default function Home() {
           <Card pad hover className="stack-lg">
             <div className="card-head">
               <div>
-                <Badge variant="accent">High-Ticket</Badge>
+                <Badge variant="crimson">High-Ticket</Badge>
                 <h3 className="display" style={{ marginTop: 12 }}>Considered, high-value purchases</h3>
               </div>
             </div>

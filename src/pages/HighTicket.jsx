@@ -155,7 +155,7 @@ export default function HighTicket() {
         <div className="row-between">
           <span className="eyebrow">High-Ticket Engine · {business.name}</span>
           <div className="row">
-            <Badge variant={business.mode === 'high' ? 'accent' : 'ok'}>{MODES[business.mode].label}</Badge>
+            <Badge variant={business.mode === 'high' ? 'crimson' : 'ok'}>{MODES[business.mode].label}</Badge>
             <Badge variant="demo" dot>Browser-session demo</Badge>
           </div>
         </div>
