@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { contrastText } from '../lib/color.js';
 import { useBusiness } from '../lib/store.jsx';
 import { Btn, Badge, Card, Field, Input, TextArea, ColorInput, Tabs, Toast } from '../components/ui.jsx';
+import CampaignPreview from '../components/CampaignPreview.jsx';
 
 const TABS = [
   { id: 'social', label: 'Social media ad' },
@@ -69,6 +70,7 @@ export default function MarketingStudio() {
   };
 
   const adCopy = `${form.offer} — ${form.product} at ${form.name}.`;
+  const activeChannel = TABS.find((t) => t.id === tab)?.label;
 
   return (
     <div className="container page">
@@ -267,6 +269,14 @@ export default function MarketingStudio() {
           </div>
         </Card>
       </div>
+
+      {/* Campaign preview — the execution layer of the marketing system */}
+      <CampaignPreview
+        businessName={form.name.trim()}
+        offer={form.offer.trim()}
+        industryId={business?.industryId}
+        activeChannel={activeChannel}
+      />
 
       <Toast message={toast} />
     </div>
