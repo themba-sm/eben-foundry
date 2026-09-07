@@ -679,90 +679,6 @@ table.data tr:last-child td { border-bottom: none; }
 }
 
 /* ============================================================
-   CINEMATIC INTRO — Video Layer / Transition Layer
-   ============================================================ */
-
-.cine-overlay {
-  position: fixed; inset: 0; z-index: 500;
-  background: #15171C; /* matches --ink — no white flash while the video loads */
-  display: flex; align-items: center; justify-content: center;
-  opacity: 1; transition: opacity 0.56s ease;
-}
-.cine-overlay.fading { opacity: 0; }
-
-.cine-stage {
-  position: relative;
-  width: 100%; height: 100%;
-  display: flex; align-items: center; justify-content: center;
-}
-
-/* Ambient layer — fills the ENTIRE screen: same footage scaled to cover,
-   softly defocused so the video's live colours bleed edge-to-edge.
-   The whole viewport becomes the video's world — no empty bars. */
-.cine-backdrop {
-  position: absolute; inset: 0; z-index: 0;
-  width: 100%; height: 100%;
-  object-fit: cover;
-  transform: scale(1.14); /* keeps the blur edge from leaking at screen borders */
-  filter: blur(34px) brightness(0.88);
-  background: #15171C;
-}
-
-/* The sharp film itself — object-fit: contain, so the composition and the
-   forged mark are never cropped, on any screen or orientation. */
-.cine-video {
-  position: relative; z-index: 1;
-  max-width: 100%; max-height: 100%;
-  width: 100%; height: 100%;
-  object-fit: contain;
-  background: transparent;
-}
-
-/* ------------------------------------------------------------
-   Responsive stage shape — device-appropriate framing.
-   Landscape (laptop / desktop / tablet landscape): full-bleed wide
-   cinematic presentation (contain + ambient bleed).
-   Portrait (mobile / tablet portrait): the film presents as a
-   PORTRAIT A4 poster — a premium, document-like frame that fills
-   the height elegantly, centred over the ambient layer.
-   ------------------------------------------------------------ */
-@media (orientation: portrait) {
-  .cine-video {
-    width: auto;
-    height: min(94vh, 133vw);   /* A4 height, width-safe on narrow screens */
-    height: min(94svh, 133vw);  /* dynamic viewport: no hidden chrome issues */
-    aspect-ratio: 210 / 297;    /* A4 portrait */
-    object-fit: cover;          /* fills the A4 frame, centre-weighted mark */
-    border-radius: 16px;
-    box-shadow: 0 22px 70px rgba(0, 0, 0, 0.38);
-  }
-}
-
-.cine-enter {
-  position: absolute; z-index: 2;
-  bottom: 14%; left: 50%; transform: translateX(-50%);
-  background: transparent; border: 1px solid rgba(246,244,239,0.5);
-  color: #F6F4EF; font-family: var(--font-body); font-weight: 600; font-size: 13px;
-  letter-spacing: 0.04em; padding: 12px 26px; border-radius: 999px; cursor: pointer;
-  transition: background 0.18s ease, border-color 0.18s ease;
-}
-.cine-enter:hover, .cine-enter:focus-visible { background: rgba(246,244,239,0.12); border-color: #F6F4EF; }
-
-.cine-skip {
-  position: absolute; z-index: 2; bottom: 22px; right: 22px;
-  background: transparent; border: none; color: rgba(246,244,239,0.62);
-  font-family: var(--font-body); font-size: 12.5px; font-weight: 500;
-  letter-spacing: 0.03em; padding: 8px 12px; cursor: pointer;
-  transition: color 0.18s ease;
-}
-.cine-skip:hover, .cine-skip:focus-visible { color: #F6F4EF; }
-
-@media (max-width: 640px) {
-  .cine-enter { bottom: 16%; font-size: 12.5px; padding: 11px 22px; }
-  .cine-skip { bottom: 16px; right: 16px; }
-}
-
-/* ============================================================
    HOMEPAGE — "world echo" hero band (continuation of the intro)
    ============================================================ */
 
@@ -806,21 +722,11 @@ table.data tr:last-child td { border-bottom: none; }
   font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
   color: rgba(246,244,239,0.82);
 }
-.world-echo-replay {
-  position: absolute; right: 16px; bottom: 12px; z-index: 2;
-  font-size: 11px; font-weight: 600; color: rgba(246,244,239,0.55);
-  background: transparent; border: none; cursor: pointer; padding: 6px 8px;
-  transition: color 0.18s ease;
-}
-.world-echo-replay:hover, .world-echo-replay:focus-visible { color: #F6F4EF; }
 
 @media (max-width: 640px) {
   .world-echo { height: 150px; border-radius: 0 0 14px 14px; }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .cine-overlay { transition: none; }
-}
 
 
 /* ---------- About page lockup ---------- */

@@ -13,14 +13,10 @@ const MODULES = [
 ];
 
 function WorldEcho() {
-  const replay = () => window.dispatchEvent(new CustomEvent('eben:replay-intro'));
   return (
-    <div className="world-echo" role="img" aria-label="The forged Eben Foundry mark, from the brand introduction">
+    <div className="world-echo" role="img" aria-label="The forged Eben Foundry brand mark">
       <img src="/media/eben-intro-poster.jpg" alt="" aria-hidden="true" loading="eager" />
       <span className="world-echo-caption">The world of Eben Foundry</span>
-      <button type="button" className="world-echo-replay" onClick={replay}>
-        Replay intro ↻
-      </button>
     </div>
   );
 }
