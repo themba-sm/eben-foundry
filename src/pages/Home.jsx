@@ -30,7 +30,7 @@ export default function Home() {
     <div className="container page">
       <WorldEcho />
       {/* Hero */}
-      <section style={{ padding: '72px 0 64px', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 22 }}>
+      <section className="hero-bg-section" style={{ padding: '72px 0 64px', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 22 }}>
         <div className="reveal">
           <span className="eyebrow">Business growth infrastructure</span>
         </div>
