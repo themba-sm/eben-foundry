@@ -684,17 +684,29 @@ table.data tr:last-child td { border-bottom: none; }
 
 /* Hero backdrop — the forged Eben Foundry mark's own bronze/charcoal texture,
    heavily blurred, sitting behind the ENTIRE hero block (eyebrow through the
-   Summit demo line). A cream gradient overlay (matching --bg, #F2EEE4) keeps
-   all existing dark text fully legible while the brand texture bleeds
-   through at the section edges. Ambient, not literal. */
+   Summit demo line). The source photo is very dark, so it's brightened via
+   filter on a ::before layer (kept separate from the text, which would
+   otherwise be brightened too) and blended at moderate opacity — visible as
+   a warm tonal wash, while staying light enough for the dark headline/body
+   text to stay fully legible. */
 .hero-bg-section {
-  background-image:
-    linear-gradient(180deg, rgba(242,238,228,0.90) 0%, rgba(242,238,228,0.94) 55%, rgba(242,238,228,0.97) 100%),
-    url('/media/hero-bg-blurred.jpg');
+  position: relative;
+  overflow: hidden;
+  background: var(--bg);
+  border-radius: var(--radius);
+  isolation: isolate;
+}
+.hero-bg-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: url('/media/hero-bg-blurred.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  border-radius: var(--radius);
+  filter: brightness(2.5) saturate(1.15);
+  opacity: 0.55;
 }
 
 
