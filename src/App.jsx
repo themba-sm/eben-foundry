@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useHashRoute, Link } from './lib/router.jsx';
 import { BusinessProvider, useBusiness } from './lib/store.jsx';
 import { Badge } from './components/ui.jsx';
@@ -11,6 +11,8 @@ import Readiness from './pages/Readiness.jsx';
 import Network from './pages/Network.jsx';
 import Impact from './pages/Impact.jsx';
 import About from './pages/About.jsx';
+import CinematicIntro from './components/CinematicIntro.jsx';
+import { shouldAttemptIntro, markIntroShown } from './lib/introSession.js';
 
 const NAV_ITEMS = [
   { id: 'home', label: 'Experience' },
@@ -134,10 +136,25 @@ const PAGES = {
 export default function App() {
   const [route] = useHashRoute();
   const Page = PAGES[route] || Home;
+  const [introVisible, setIntroVisible] = useState(() => shouldAttemptIntro());
+
+  useEffect(() => {
+    const onReplay = () => setIntroVisible(true);
+    window.addEventListener('eben:replay-intro', onReplay);
+    return () => window.removeEventListener('eben:replay-intro', onReplay);
+  }, []);
+
+  const finishIntro = () => {
+    markIntroShown();
+    setIntroVisible(false);
+  };
 
   return (
     <BusinessProvider>
-      <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+      <div
+        style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}
+        aria-hidden={introVisible ? 'true' : undefined}
+      >
         <a href="#main" className="skip-link">Skip to content</a>
         <Header route={PAGES[route] ? route : 'home'} />
         <main id="main" style={{ flex: 1 }}>
@@ -145,6 +162,7 @@ export default function App() {
         </main>
         <Footer />
       </div>
+      {introVisible && <CinematicIntro onComplete={finishIntro} />}
     </BusinessProvider>
   );
 }
