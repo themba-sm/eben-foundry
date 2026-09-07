@@ -679,24 +679,14 @@ table.data tr:last-child td { border-bottom: none; }
 }
 
 /* ============================================================
-   HOMEPAGE — "world echo" hero band (continuation of the intro)
+   HOMEPAGE — hero backdrop
    ============================================================ */
 
-.world-echo {
-  position: relative;
-  width: 100%;
-  height: 220px;
-  background: #15171C;
-  overflow: hidden;
-  border-radius: 0 0 18px 18px;
-  margin-top: -1px;
-}
-
 /* Hero backdrop — the forged Eben Foundry mark's own bronze/charcoal texture,
-   heavily blurred, sitting behind the hero copy. A cream gradient overlay
-   (matching --bg, #F2EEE4) keeps all existing dark text fully legible while
-   the brand texture bleeds through at the section edges. Ambient, not
-   literal — same technique as the intro's blurred backdrop layer. */
+   heavily blurred, sitting behind the ENTIRE hero block (eyebrow through the
+   Summit demo line). A cream gradient overlay (matching --bg, #F2EEE4) keeps
+   all existing dark text fully legible while the brand texture bleeds
+   through at the section edges. Ambient, not literal. */
 .hero-bg-section {
   background-image:
     linear-gradient(180deg, rgba(242,238,228,0.90) 0%, rgba(242,238,228,0.94) 55%, rgba(242,238,228,0.97) 100%),
@@ -705,26 +695,6 @@ table.data tr:last-child td { border-bottom: none; }
   background-position: center;
   background-repeat: no-repeat;
   border-radius: var(--radius);
-}
-
-.world-echo img {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  object-fit: contain; /* preserve composition — never crop the mark */
-}
-.world-echo::after {
-  content: "";
-  position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(21,23,28,0) 40%, var(--bg) 100%);
-}
-.world-echo-caption {
-  position: absolute; left: 20px; bottom: 14px; z-index: 2;
-  font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
-  color: rgba(246,244,239,0.82);
-}
-
-@media (max-width: 640px) {
-  .world-echo { height: 150px; border-radius: 0 0 14px 14px; }
 }
 
 
